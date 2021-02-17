@@ -11,10 +11,10 @@ router.post('/login', async (req, res) => {
 
     try{
         if (user.password == password) {
-            res.send("success");
+            res.send({"success" : 1});
         }
         else{
-            res.send("failure");
+            res.send({"success" : 0});
         }
     }catch(err){
         res.send({message :err});

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 //Import routes
 const authRoute = require('./routes/auth');
+const newExamRoute = require('./routes/createExams');
 
 
 
@@ -31,6 +32,7 @@ app.use(express.json());
 
 //Routes middleware
 app.use('/api/user' , authRoute);
+app.use('/api/createExam' , newExamRoute);
 
 
 
