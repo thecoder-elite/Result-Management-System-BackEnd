@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 //Import routes
 const authRoute = require('./routes/auth');
 const newExamRoute = require('./routes/createExams');
+const addingMarks = require('./routes/addStudents');
 
 
 
@@ -15,7 +16,7 @@ const newExamRoute = require('./routes/createExams');
 
 //connect to db 
 mongoose.connect('mongodb://localhost/esdnow' ,{ useUnifiedTopology: true } ,  () => {
-    console.log('dsssb came here')
+    console.log('db connected')
 });
 
 
@@ -33,6 +34,7 @@ app.use(express.json());
 //Routes middleware
 app.use('/api/user' , authRoute);
 app.use('/api/createExam' , newExamRoute);
+app.use('/api/addStudentDetail' , addingMarks)
 
 
 

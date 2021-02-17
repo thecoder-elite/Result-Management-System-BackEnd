@@ -42,10 +42,10 @@ const exam = new newExams({
 
 try{
     const savedExam = await exam.save()
-    res.json(savedExam);
+    res.json({"message" : "success"});
 }
 catch(err){
-    res.json({message : err});
+    res.json({"message" : "failure"});
 }
 
 });
