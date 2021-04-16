@@ -1,42 +1,27 @@
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
+var cors = require('cors')
+app.use(cors())
 
 //Import routes
 const authRoute = require('./routes/auth');
-const newExamRoute = require('./routes/createExams');
-const addingMarks = require('./routes/addStudents');
-
-
-
-
-
-
-
-
-//connect to db 
-mongoose.connect('mongodb://localhost/esdnow' ,{ useUnifiedTopology: true } ,  () => {
-    console.log('db connected')
-});
-
-
-
-
-
-
-
-//middleware
+const examRoute = require('./routes/examHandler');
+const addStudents = require('./routes/addStudents');
+const updateStudent = require('./routes/updateStudent');
 
 app.use(express.json());
 
 
-
 //Routes middleware
-app.use('/api/user' , authRoute);
-app.use('/api/createExam' , newExamRoute);
-app.use('/api/addStudentDetail' , addingMarks)
+app.post('/login' , authRoute);
+app.get('/getStudent', authRoute);
+app.post('/createExam' , examRoute);
+app.get(['/getExams', '/:examId'], examRoute);
+app.post('/addStudentDetail', addStudents)
+app.get('/getStudentDetails/:examId', addStudents);
+app.delete('/delete/:studentId/:examId', updateStudent)
 
 
 
 
-app.listen(3000 , () => console.log('listening on'));
+app.listen(3000 , () => console.log(`listening on port 3000`));
